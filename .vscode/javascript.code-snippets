@@ -18,7 +18,7 @@
     "Main body for NS2 scripts": {
         "scope": "javascript",
         "prefix": "main",
-        "body": "/**\n* @param {NS} ns\n**/\nexport async function main(ns) {\n\t$0\n}",
+        "body": "/** @type {NS} */\nlet ns = null;\n\n/**\n* @param {NS} ns\n**/\nexport async function main(_ns) {\n\tns = _ns;\n\t$0\n}",
         "description": "Main body of NS2 scripts (bitburner-game)"
     }
 }

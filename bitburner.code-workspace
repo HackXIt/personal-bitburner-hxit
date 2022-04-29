@@ -6,7 +6,12 @@
     ],
     "settings": {
         "files.exclude": {
-            ".vscode/**"
-        }
+            ".vscode/.history/**": true
+        },
+        "bitburner.scriptRoot": "./src",
+        "bitburner.showFileWatcherEnabledNotification": true,
+        "bitburner.showPushSuccessNotification": true,
+        "bitburner.authToken": "M9JVkia5pyWFWBa3yFICI2YNwlHZHHLqRe9mzJnMsKCwsD7C9Dx+FE67u/Rsb7sV",
+        "bitburner.fileWatcher.enable": true
     }
 }

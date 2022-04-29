@@ -5,8 +5,11 @@
         }
     ],
     "settings": {
+        "javascript.preferences.importModuleSpecifier": "non-relative",
         "files.exclude": {
-            ".vscode/.history/**": true
+            ".vscode/.history/**": true,
+            "jsconfig.json": true,
+            "NetscriptDefinitions.d.ts": true
         },
         "bitburner.scriptRoot": "./src",
         "bitburner.showFileWatcherEnabledNotification": true,

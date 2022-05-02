@@ -1,28 +1,7 @@
 /** @type {NS} */
 let ns = null;
 
-/** Checks all hacking-related information on target server
- * 
- * @param {*} target 
- * @returns Object containing relevant hacking-information for worker
- */
-function checkTarget(target) {
-    if (!ns.serverExists(target)) {
-        return null
-    }
-    ns.printf("\n\n--- Checking target %s: ---", target);
-    let data = {
-        name: target,
-        minSecurity: ns.getServerMinSecurityLevel(target),
-        security: ns.getServerSecurityLevel(target),
-        // reqLevel: ns.getServerRequiredHackingLevel(target),
-        // reqPorts: ns.getServerNumPortsRequired(target),
-        maxMoney: ns.getServerMaxMoney(target),
-        money: ns.getServerMoneyAvailable(target),
-        rooted: ns.hasRootAccess(target)
-    };
-    return data;
-}
+import { checkTarget } from './util.js';
 
 /** This script is the main executor for workers to gather money
 * @param {NS} _ns
@@ -32,7 +11,7 @@ export async function main(_ns) {
     let target = checkTarget(ns.args[0]);
     let moneyThresh = target.maxMoney * 0.75;
     let securityThresh = target.minSecurity + 5;
-    ns.printf("MoneyThreshold: %.2f\nSecurityThreshold: %.3f", moneyThresh, securityThresh);
+    ns.print(`MoneyThreshold: ${ns.nFormat(moneyThresh, "$0.000a")}\nSecurityThreshold: ${securityThresh}`);
     if (!target.rooted) {
         ns.nuke(target.name);
     }

@@ -1,19 +1,46 @@
 /** @type {NS} */
 let ns = null;
 
-let actions = ["update"]
+let actions = ["check"]
 
-async function updateWorkers(file) {
-    if (file == null || typeof (file) != "string") {
-        ns.alert("ERROR: Filename must be provided and be of type 'string'");
-        return;
+/** Checks all hacking-related information on target server
+ * 
+ * @param {*} target 
+ * @returns Object containing relevant hacking-information for worker
+ */
+export function checkTarget(target) {
+    if (!ns.serverExists(target)) {
+        return null
     }
-    let workers = ns.getPurchasedServers();
-    workers.forEach(worker => {
-        await ns.scp(file, worker);
-    });
+    ns.printf(`\n\n--- Checking target ${target}: ---`);
+    let data = {
+        name: target,
+        minSecurity: ns.getServerMinSecurityLevel(target),
+        security: ns.getServerSecurityLevel(target),
+        // reqLevel: ns.getServerRequiredHackingLevel(target),
+        // reqPorts: ns.getServerNumPortsRequired(target),
+        maxMoney: ns.getServerMaxMoney(target),
+        money: ns.getServerMoneyAvailable(target),
+        rooted: ns.hasRootAccess(target)
+    };
+    return data;
 }
 
+/** Checks all machine-related information on target server
+ * 
+ * @param {*} target 
+ * @returns Object containing relevant machine-information for worker
+ */
+export function checkServer(target) {
+    if (!ns.serverExists(target)) {
+        return null;
+    }
+    let data = {
+        usedRAM: ns.getServerUsedRam(target),
+        maxRAM: ns.getServerMaxRam(target)
+    };
+    return data;
+}
 
 /**
 * @param {NS} _ns
@@ -21,11 +48,13 @@ async function updateWorkers(file) {
 export async function main(_ns) {
     ns = _ns;
     if (ns.args.length == 0) {
-        ns.alert("Script requires action. Possible actions are: " + actions);
+        ns.tprintf(`Script requires action. Possible actions are: ${actions}`);
     }
-    switch (ns.args[0]) {
-        case "update":
-            updateWorkers(ns.args[1]);
-            break;
+    if (ns.args.length == 1) {
+        ns.tprintf(`Please provide argument to given action: ${ns.args[0]} <argument>`);
+    }
+    let argument = ns.args[1]
+    if (ns.args[0] == "check" && typeof (ns.args[1]) == "string") {
+        checkServer(argument);
     }
 }

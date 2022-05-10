@@ -14,7 +14,37 @@
         "bitburner.scriptRoot": "./src",
         "bitburner.showFileWatcherEnabledNotification": true,
         "bitburner.showPushSuccessNotification": true,
-        "bitburner.authToken": "M9JVkia5pyWFWBa3yFICI2YNwlHZHHLqRe9mzJnMsKCwsD7C9Dx+FE67u/Rsb7sV",
-        "bitburner.fileWatcher.enable": true
+        "bitburner.authToken": "Q1ja90X266aPDljX5gzuOt3j9gOKVf8Sbl2UKSiT520mXHEsZquhz/B4l4y3tWsu",
+        "bitburner.fileWatcher.enable": true,
+        "Netscript2Mem.enableHighlight": true,
+        "Netscript2Mem.parseExtensions": [
+            ".ts",
+            ".js",
+            ".ns"
+        ],
+        "Netscript2Mem.enableCodeErrors": true,
+        "Netscript2Mem.enableUpdater": true,
+        "Netscript2Mem.highlightVars": [
+            {
+                "name": "ns",
+                "color": "#7fff00",
+                "type": [
+                    "MemberExpression",
+                    "CallExpression",
+                    "Other"
+                ]
+            },
+            {
+                "name": "js",
+                "color": "#7fff00",
+                "type": [
+                    "MemberExpression",
+                    "CallExpression",
+                    "Other"
+                ]
+            }
+        ],
+        "Netscript2Mem.refreshRate": 200,
+        "Netscript2Mem.createNSFiles": true
     }
 }

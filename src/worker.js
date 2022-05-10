@@ -45,7 +45,7 @@ async function updateWorkers(file) {
 
 async function purchaseWorkers(ram) {
     if (typeof (ram) != "number" || (ram % 2) != 0) {
-        ns.tprint(`Action 'buy' requires a number to the power of 2`);
+        ns.tprint(`Action 'buy' requires a number (RAM) to the power of 2`);
         ns.exit();
     }
     let limit = ns.getPurchasedServerLimit();
